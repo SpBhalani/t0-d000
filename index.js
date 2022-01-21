@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const env = require('dotenv')
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
+const path = require('path')
 env.config();
 
 
@@ -27,7 +28,8 @@ app.use('/api' , userRoute);
 app.use('/api' , todoRoute);
 
 if(process.env.NODE_ENV=="production"){
-    app.use(express.static('/front/build'))
+    app.use(express.static(path.join('front/build')))
+    app.get("*" ,(req,res) => res.senndFile(path.resolve(__dirname , 'front','build','index.html')))
 }
 
 const PORT = process.env.PORT || 5000;
