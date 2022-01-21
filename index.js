@@ -23,8 +23,8 @@ mongoose.connect(url,
 app.use(cors())    
 app.use(cookieParser());    
 app.use(express.json());
-app.use('/' , userRoute);
-app.use('/' , todoRoute);
+app.use('/api' , userRoute);
+app.use('/api' , todoRoute);
 
 if(process.env.NODE_ENV=="production"){
     app.use(express.static('/front/build'))
